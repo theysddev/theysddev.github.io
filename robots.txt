@@ -1,7 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /admin.php
-Disallow: /data/
-Disallow: /grab.php
 
 Sitemap: https://ysddev.com/sitemap.xml
+Host: ysddev.com
