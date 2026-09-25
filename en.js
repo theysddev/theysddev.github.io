@@ -5,7 +5,7 @@ window.__EN={
     "a-1":"YSD DEV is a studio based in Kazan, working remotely across Russia and abroad — no need to travel anywhere, everything is agreed over chat or a call.",
     "a-2":"We build websites end to end — business-card sites, landing pages, corporate sites and online stores on WordPress, Tilda or hand-coded. We develop Telegram bots for bookings, orders, payments and customer support, wired into CRM and spreadsheets. We turn Figma and PSD files into responsive HTML from 320px. And we design presentations and sales proposals.",
     "a-3":"A website price includes structure, design, responsive layout, lead forms, basic SEO, domain and SSL setup, plus training so you can edit texts yourself. The quote and deadline arrive on day one, progress is shown every 1–2 days, and 14 days of revisions after delivery are free.",
-    "a-4":"Rated 4.87 on Profi.ru — 30 reviews are shown here. 35 projects in the portfolio. Scoping is free — describe what you need and get a price and a timeline.", aiT:"YSD DEV helper", ccT:'This site uses cookies and Yandex.Metrica to see which pages help people. No advertising cookies. <a class="lk" id="openLegal3" href="/#legal">Details</a>', ccN:"Essential only", ccY:"Accept", ccL:"Cookies", aiS:"Instant answers · a human is one tap away", aiPh:"Ask anything about your order",
+    "a-4":"Rated 4.87 on Profi.ru — 30 reviews are shown here. 35 projects in the portfolio. Scoping is free — describe what you need and get a price and a timeline.", aiT:"YSD DEV helper", ccT:'This site uses cookies and Yandex.Metrica to see which pages help people. No advertising cookies. <a class="lk" href="/privacy.html#cookie">Details</a>', ccN:"Essential only", ccY:"Accept", ccL:"Cookies", aiS:"Instant answers · a human is one tap away", aiPh:"Ask anything about your order",
     "s-all":"Full price list, 36 services ↓",
     "ey-w":"Work", "w-h":"35 projects<br>in the portfolio",
     "w-l":"Websites, Telegram bots and decks. Tap a card to open it full size.",
@@ -77,8 +77,8 @@ window.__EN={
     f1:"Your name", f2:"Where to reply", f3:"What you need",
     ph0:"Name", ph1:"@telegram, phone or e-mail", ph2:"For example: a landing page for a car service, logo ready, needed within a week",
     
-    agree:'I consent to the processing of my personal data under the <button type="button" class="lk" id="openLegal">data-processing policy</button>, including cross-border transfer to Telegram',
-    terms:'By submitting the form you accept the <button type="button" class="lk" id="openLegal2">terms of use</button>.',
+    agree:'I give my <a class="lk" href="/soglasie.html" target="_blank">consent to the processing of personal data</a> (document in Russian)',
+    terms:'How data is handled — see the <a class="lk" href="/privacy.html" target="_blank">personal data policy</a> (in Russian).',
     send:"Send a request",
     hint:"Scoping and the quote are free. We answer around the clock, within 5 minutes.",
     okT:"Request sent", okD:"It is already in my Telegram. I will reply within 5 minutes with an exact quote and deadline.", lgT:"Terms of use and consent to data processing", lgOk:"I accept", lgDate:"Version of 11 September 2026",
@@ -87,6 +87,6 @@ window.__EN={
     _task:"Task", _name:"Name", _contact:"Contact", _from:"Page",
     _pick:"pick an option on the left",
     _sending:"Sending…",
-    _copied:"Could not reach the bot — the text is copied and Telegram is opening. Paste it and send.",
-    _manual:"Could not reach the bot. Telegram is opening — describe the task in a message."
+    _copied:"Your request is copied and Telegram is opening — paste it into the chat and press Send.",
+    _manual:"Telegram is opening — describe the task in a message, I reply within 5 minutes."
   };
