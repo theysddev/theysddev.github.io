@@ -208,15 +208,30 @@ push((L() === "en" ? "A visitor asked for a human." : "Посетитель пр
 + (ctx ? "\n\n" + (L() === "en" ? "Asked before: " : "До этого спрашивал: ") + ctx : ""));
 tick();
 }
+var GEN = /^(сколько стоит|за сколько|что входит|how much|how long|what is included)$/;
+function has(t, w){
+w = w.replace(/ё/g, "е");
+if(w.length > 3) return t.indexOf(w) >= 0;
+var i = t.indexOf(w);
+while(i >= 0){ var c = t.charAt(i - 1); if(c === " " || c === "-") return true; i = t.indexOf(w, i + 1); }
+return false;
+}
 function answer(q){
-var k = kb(), hit = k.miss, best = 0;
+var cyr = /[а-яё]/i.test(q), lat = /[a-z]/i.test(q);
+var k = (lat && !cyr) ? AI.en : (cyr ? AI.ru : kb()), hit = k.miss, best = 0, hitR = null;
 var t = " " + q.toLowerCase().replace(/ё/g, "е").replace(/[^0-9a-zа-я\s\-]/gi, " ").replace(/\s+/g, " ") + " ";
 k.rules.forEach(function(r){
 var sc = 0;
-(r.s || []).forEach(function(w){ if(t.indexOf(w.replace(/ё/g, "е")) >= 0) sc += 3; });
-(r.k || []).forEach(function(w){ if(t.indexOf(w.replace(/ё/g, "е")) >= 0) sc += 1; });
-if(sc > best){ best = sc; hit = r.a; }
+(r.s || []).forEach(function(w){ if(has(t, w)) sc += 3; });
+(r.k || []).forEach(function(w){ if(has(t, w)) sc += 1; });
+r._sc = sc;
+if(sc > 0 && sc >= best){ best = sc; hit = r.a; hitR = r; }
 });
+if(hitR && GEN.test((hitR.s || [])[0])){
+var alt = null, ab = 0;
+k.rules.forEach(function(r){ if(!GEN.test((r.s || [])[0]) && r.a !== "__HUMAN__" && r._sc >= 3 && r._sc >= ab){ ab = r._sc; alt = r; } });
+if(alt) hit = alt.a;
+}
 if (hit === "__HUMAN__") { human(); misses = 0; return; }
 misses = hit === k.miss ? misses + 1 : 0;
 var p = document.createElement("p");
