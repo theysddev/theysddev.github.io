@@ -82,7 +82,7 @@ window.__EN={
     send:"Send a request",
     hint:"Scoping and the quote are free. We answer around the clock, within 5 minutes.",
     okT:"Request sent", okD:"It is already in my Telegram. I will reply within 5 minutes with an exact quote and deadline.", lgT:"Terms of use and consent to data processing", lgOk:"I accept", lgDate:"Version of 11 September 2026",
-    fcopy:"© 2026 YSD DEV · provider — Sherzoda Yusuf, private individual · Kazan, working remotely", fusl:"Terms",
+    fcopy:"© 2026 YSD DEV", fusl:"Terms",
     _greet:"New request from the YSD DEV site",
     _task:"Task", _name:"Name", _contact:"Contact", _from:"Page",
     _pick:"pick an option on the left",
