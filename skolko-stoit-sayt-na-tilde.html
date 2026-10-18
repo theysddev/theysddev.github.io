@@ -144,8 +144,8 @@ else fin(false);
 if(!URL_){ tg(); return; }
 send.disabled = true; hint.textContent = "Отправляю…";
 fetch(URL_, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({text:msg, name:nm.value.trim(), contact:ct.value.trim(), details:dt.value.trim(), page:location.href, consent:agree.checked})})
-.then(function(r){ return r.ok ? r.json().catch(function(){ return {ok:true}; }) : Promise.reject(); })
-.then(function(j){ if(j && j.ok === false) throw 0;
+.then(function(r){ return r.ok ? r.json().catch(function(){ return {ok:false}; }) : Promise.reject(); })
+.then(function(j){ if(!j || j.ok !== true) throw 0;
 card.classList.add("ok");
 if(window.ym && METRIKA) try { ym(METRIKA, "reachGoal", "zayavka"); } catch(e){} })
 .catch(function(){ send.disabled = false; tg(); });

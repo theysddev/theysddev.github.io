@@ -649,8 +649,8 @@ var ok = function(){ card.classList.add("ok"); if(window.YSD && YSD.lead) YSD.le
 var no = function(){ send.disabled = false; fallback(msg); };
 if(SEND.mode === "script" && SEND.url){
 fetch(SEND.url, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({text:msg, name:nameEl.value.trim(), contact:contactEl.value.trim(), details:detEl.value.trim(), page:location.href, consent:agree.checked})})
-.then(function(r){ return r.ok ? r.json().catch(function(){ return {ok:true}; }) : Promise.reject(); })
-.then(function(j){ if(j && j.ok === false) throw 0; ok(); })
+.then(function(r){ return r.ok ? r.json().catch(function(){ return {ok:false}; }) : Promise.reject(); })
+.then(function(j){ if(!j || j.ok !== true) throw 0; ok(); })
 .catch(no);
 } else { send.disabled = false; fallback(msg); }
 });
