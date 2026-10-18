@@ -12,7 +12,7 @@ live: "Юсуф на связи · отвечает лично",
 wait: "ждём ответа",
 off: "Быстрее всего — написать мне лично, отвечаю за пару минут:",
 err: "Сообщение не ушло. Напишите, пожалуйста, сюда:",
-tg: "Telegram — @ysddev"
+tg: "Написать в Telegram-бот"
 },
 rules: [
 {s:["привет","здравств","добрый день","добрый вечер","доброе утро"], k:["салам","хай"],
@@ -64,7 +64,7 @@ live: "Yusuf is here · answering in person",
 wait: "waiting for a reply",
 off: "The fastest way to reach me is a direct message — I reply within minutes:",
 err: "The message didn't go through. Please write to me here:",
-tg: "Telegram — @ysddev"
+tg: "Message our Telegram bot"
 },
 rules: [
 {s:["hello","hey","good morning","good evening"], k:["hi"],
@@ -150,7 +150,7 @@ return p;
 }
 function addTg(text){
 var p = add(text, "bot"), a = document.createElement("a");
-a.className = "ai-tg"; a.href = "https://t.me/ysddev";
+a.className = "ai-tg"; a.href = "https://t.me/ysd_free_bot?start=chat";
 a.target = "_blank"; a.rel = "noopener"; a.textContent = kb().chat.tg;
 p.appendChild(a);
 }

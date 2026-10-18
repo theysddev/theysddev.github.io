@@ -87,6 +87,6 @@ window.__EN={
     _task:"Task", _name:"Name", _contact:"Contact", _from:"Page",
     _pick:"pick an option on the left",
     _sending:"Sending…",
-    _copied:"Your request is copied and Telegram is opening — paste it into the chat and press Send.",
-    _manual:"Telegram is opening — describe the task in a message, I reply within 5 minutes."
+    _copied:"Your request is copied and our Telegram bot is opening — press Start and paste it.",
+    _manual:"Our Telegram bot is opening — press Start and describe the task, I reply within 5 minutes."
   };
