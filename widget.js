@@ -1,7 +1,7 @@
 (function(){
 var AI = {
 ru: {
-hi: "Здравствуйте! Я консультант YSD DEV.\nПодскажу цену, срок и что входит в работу — спрашивайте своими словами.",
+hi: "Здравствуйте! Я ИИ-консультант YSD DEV.\nПодскажу цену, срок и что входит в работу — спрашивайте своими словами. Личные данные здесь писать не нужно: для заявки есть форма.",
 chips: ["Сколько стоит сайт?", "Какие сроки?", "Что входит в цену?", "Нужен Telegram-бот", "Позвать человека"],
 ph: "Спросите что угодно о заказе",
 chat: {
@@ -53,7 +53,7 @@ a:"__HUMAN__"}
 miss: "Не уверен, что понял вопрос. Спросите про цену, сроки, что входит в работу, боты, сайты или презентации.\nИли нажмите «Позвать человека» — отвечу лично."
 },
 en: {
-hi: "Hi, I'm the YSD DEV assistant.\nAsk me about prices, timelines or what's included — in your own words.",
+hi: "Hi, I'm the YSD DEV AI assistant.\nAsk me about prices, timelines or what's included — in your own words. No need to share personal details here: use the request form for that.",
 chips: ["How much is a website?", "How long does it take?", "What's included?", "I need a Telegram bot", "Talk to a human"],
 ph: "Ask anything about your project",
 chat: {
@@ -114,12 +114,14 @@ miss: "I'm not sure I caught that. Ask about prices, timelines, what's included,
 отправляет в Telegram. Чтобы отвечать прямо в окне сайта: положите chat.php на
 российский хостинг и впишите сюда его адрес, например "https://ysddev.ru/chat.php". */
 var CHAT_URL = "";
+/* ИИ-ответы: воркер ysd-lead на Cloudflare вызывает Claude API. Если он недоступен — отвечают правила выше. */
+var AI_URL = "https://api.ysdprojects.space/?ai=1";
 (function(){
 var log = document.getElementById("aiLog"), chips = document.getElementById("aiChips"),
 form = document.getElementById("aiForm"), input = document.getElementById("aiText"),
 launch = document.getElementById("aiOpen"), box = document.getElementById("ai"),
 sub = document.querySelector('.ai-hd [data-i="aiS"]'),
-started = false, misses = 0, mine = [];
+started = false, misses = 0, mine = [], hist = [];
 if (!log || !launch) return;
 var C = { on:false, last:0, sid:null, timer:0, t0:0, live:false };
 var hold = window.trapOn || function(){}, free = window.trapOff || function(){};
@@ -216,6 +218,25 @@ var i = t.indexOf(w);
 while(i >= 0){ var c = t.charAt(i - 1); if(c === " " || c === "-") return true; i = t.indexOf(w, i + 1); }
 return false;
 }
+function aiAnswer(q){
+hist.push({ role: "user", content: q });
+if (hist.length > 12) hist = hist.slice(-12);
+var p = document.createElement("p");
+p.className = "bot typing"; p.innerHTML = "<i></i><i></i><i></i>";
+log.appendChild(p); log.scrollTop = log.scrollHeight;
+var ctl = window.AbortController ? new AbortController() : null;
+var to = setTimeout(function(){ if (ctl) ctl.abort(); }, 25000);
+fetch(AI_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ messages: hist, page: location.pathname, lang: L() }), signal: ctl ? ctl.signal : undefined })
+.then(function(r){ return r.json(); })
+.then(function(d){
+clearTimeout(to); p.remove();
+if (!d || !d.ok || !d.text) throw 0;
+if (/__HUMAN__/.test(d.text)) { hist.pop(); human(); return; }
+hist.push({ role: "assistant", content: d.text });
+add(d.text, "bot");
+})
+.catch(function(){ clearTimeout(to); p.remove(); hist.pop(); answer(q); });
+}
 function answer(q){
 var cyr = /[а-яё]/i.test(q), lat = /[a-z]/i.test(q);
 var k = (lat && !cyr) ? AI.en : (cyr ? AI.ru : kb()), hit = k.miss, best = 0, hitR = null;
@@ -246,7 +267,7 @@ if (twice && !C.on) { misses = 0; human(); }
 function say(q){
 add(q, "me"); mine.push(q); if (mine.length > 8) mine.shift();
 if (C.on) { push(q); return; }
-answer(q);
+if (AI_URL) aiAnswer(q); else answer(q);
 }
 function drawChips(){
 chips.innerHTML = kb().chips.map(function(c){ return "<button type='button'>" + c + "</button>"; }).join("");
