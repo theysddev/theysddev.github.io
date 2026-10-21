@@ -66,7 +66,7 @@ sl38:"Car detailing website — from 10 000 ₽", sl39:"Medical centre website �
     g4b:"Staged payment", g4s:"Part after the mock-up is approved, the rest after handover.",
     pn1:"on the second product in one order: website + bot or deck", pn2:"scoping and the quote", pn3:"days of revisions after handover — depends on the package", pn3b:"up to 60",
     status:"Taking new projects",
-    h1a:"Websites, Telegram bots and decks —", h1b:"end to end.",
+    h1a:"Websites, landing pages, online stores, Telegram bots, Mini Apps, AI assistants, CRM, decks and design", h1b:"end to end.",
     sub:"You get a fixed quote and a firm deadline on day one, progress every day, and 14 days of free revisions.",
     cta1:"Send a request", cta2:"Services & pricing",
     st0v:"5.0", st1:"Sofya’s rating", st2:"Reviews", st2v:"40", st3:"Services", st4:"Lead time", st4v:"from 1 day",
