@@ -327,7 +327,7 @@ return '<figure class="live" style="--k:' + ((shown - 1) % 12) + '" tabindex="0"
 '<div class="ph">' + (w.u ? '<span class="lv">online</span>' : '') + '<span class="sheen"></span>' +
 '<img alt="' + nm + '" width="1920" height="1080" ' +
 (shown <= 6 ? 'decoding="async" ' : 'loading="lazy" decoding="async" ') +
-'sizes="(max-width:720px) 47vw, (max-width:1500px) 31vw, 340px" ' +
+'sizes="(max-width:720px) 94vw, 640px" ' +
 'srcset="' + srcset(i, [400, 800, 1200]) + '" src="' + pic(i, 400) + '" onerror="YSD.fix(this)"></div></figure>';
 }).join("");
 wGrid.querySelectorAll("figure").forEach(function(f){
