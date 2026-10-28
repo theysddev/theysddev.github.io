@@ -97,7 +97,7 @@ sl38:"Car detailing website — from 10 000 ₽", sl39:"Medical centre website �
     terms:'How data is handled — see the <a class="lk" href="/privacy.html" target="_blank">personal data policy</a> (in Russian).',
     send:"Send a request",
     hint:"Scoping and the quote are free. We answer around the clock, within 5 minutes.",
-    okT:"Request sent", okD:"It is already in my Telegram. I will reply within 5 minutes with an exact quote and deadline.", lgT:"Terms of use and consent to data processing", lgOk:"I accept", lgDate:"Version of 11 September 2026",
+    okT:"Request sent", okD:"We have it. To talk directly and faster, continue in our Telegram — we reply there within 5 minutes.", lgT:"Terms of use and consent to data processing", lgOk:"I accept", lgDate:"Version of 11 September 2026",
     fcopy:"© 2026 YSD DEV · Sofya Khripunova, self-employed (NPD), TIN 745507840794", fusl:"Terms",
     _greet:"New request from the YSD DEV site",
     _task:"Task", _name:"Name", _contact:"Contact", _from:"Page",
