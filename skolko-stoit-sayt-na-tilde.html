@@ -136,7 +136,7 @@ L.push("Задача: " + dt.value.trim());
 L.push("", "Страница: " + location.href);
 var msg = L.join("\n");
 var tg = function(){
-if(window.ym && METRIKA) try { ym(METRIKA, "reachGoal", "zayavka_tg"); } catch(e){}
+if(window.ym && METRIKA) try { ym(METRIKA, "reachGoal", "lead_tg"); } catch(e){}
 var fin = function(ok){ hint.textContent = ok ? "Заявка скопирована, открываю наш Telegram-бот — нажмите «Запустить» и вставьте текст." : "Открываю наш Telegram-бот — нажмите «Запустить» и опишите задачу, отвечу в течение 5 минут.";
 hint.className = "hint sent"; window.open("https://t.me/" + TG, "_blank", "noopener"); };
 if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(msg).then(function(){fin(true);}, function(){fin(false);});

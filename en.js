@@ -69,7 +69,7 @@ sl38:"Car detailing website — from 10 000 ₽", sl39:"Medical centre website �
     h1a:"Websites, landing pages, online stores, Telegram bots, Mini Apps, AI assistants, CRM, decks and design", h1b:"end to end.",
     sub:"You get a fixed quote and a firm deadline on day one, progress every day, and 14 days of free revisions.",
     cta1:"Send a request", cta2:"Services & pricing",
-    st0v:"★★★★★", st1:"Client reviews", st2:"Specialists", st2v:"2", st3:"Services", st4:"Lead time", st4v:"from 1 day",
+    st0v:"★★★★★", st1:"Reviews from Profi.ru", st2:"Specialists", st2v:"2", st3:"Services", st4:"Lead time", st4v:"from 1 day",
     ey1:"Services", "s-h":"What we build",
     "s-l":"Fixed quotes, clear deadlines, everything handed over in editable form. Scoping is free.",
     sv1d:"Landing page in 1–2 days, corporate site in 3–5, store in 5–7. WordPress, Tilda or hand-coded. Structure, design, responsive layout, forms, basic SEO, domain and SSL, handover training.", sv1p:"from 15 000 ₽",
