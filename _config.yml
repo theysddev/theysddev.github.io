@@ -1,2 +1,6 @@
 include:
   - .well-known
+exclude:
+  - scripts
+  - data
+  - node_modules
