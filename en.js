@@ -6,7 +6,7 @@ window.__EN={
     "a-2":"We build websites end to end — business-card sites, landing pages, corporate sites and online stores on WordPress, Tilda or hand-coded. We develop Telegram bots for bookings, orders, payments and customer support, wired into CRM and spreadsheets. We turn Figma and PSD files into responsive HTML from 320px. And we design presentations and sales proposals.",
     "a-3":"A website price includes structure, design, responsive layout, lead forms, basic SEO, domain and SSL setup, plus training so you can edit texts yourself. The quote and deadline arrive on day one, progress is shown every day, and 14 days of revisions after delivery are free.",
     "a-4":"There are two of us, with 44 client reviews from Profi.ru on this site; Sofya is rated 5.0. 84 projects in the portfolio. Scoping is free — describe what you need and get a price and a timeline.", aiT:"YSD DEV helper", ccT:'This site uses cookies and Yandex Metrica to see which pages help people. Metrica starts only after you agree; there are no advertising cookies. <a class="lk" href="/privacy.html#cookie">Details</a>', ccN:"Essential only", ccY:"Accept", ccL:"Cookies", aiS:"Instant answers · a human is one tap away", aiPh:"Ask anything about your order",
-    "s-all":"Full price list, 46 services ↓",
+    "s-all":"Full price list, 85 services ↓",
     "ey-w":"Work", "w-h":"84 projects<br>in the portfolio",
     "w-l":"Websites, Telegram bots, decks, web apps and design. All 84 projects are live — hit \"Open project\": try the calculators, walk through a bot scenario, flip through a deck. Your project will look like this.", "lb-z":"Tap the image to zoom",
     sl1:"Websites, end to end — from 15 000 ₽", sl2:"Online store — 45 000 ₽", sl3:"WordPress site — 20 000 ₽",
