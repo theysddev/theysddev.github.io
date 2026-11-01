@@ -103,7 +103,7 @@ var SEND = {
 mode : "script",
 /* Приёмник заявок (Cloudflare Worker ysd-lead). Бот забирает заявки оттуда и присылает
 в Telegram. Если приёмник недоступен — текст копируется и открывается @ysd_dev_bot. */
-url  : "https://api.ysdprojects.space/"
+url  : "https://functions.yandexcloud.net/d4e4uknrrn8stvorhfin"
 };
 var STATS = "";             /* серверного счётчика на GitHub Pages нет */
 var METRIKA = "112490537";  /* номер счётчика Яндекс.Метрики. Пусто — статистики нет */
@@ -213,7 +213,7 @@ var PRICES = [
 ["Создание сайта-визитки","Business-card site","10 000 ₽"],
 ["Лендинг","Landing page","10 000 ₽"],
 ["Прелендинг","Pre-landing page","10 000 ₽"],
-["Quiz-сайт","Quiz site","15 000 ₽"],
+["Квиз-сайт","Quiz site","15 000 ₽"],
 ["Страница благодарности","Thank-you page","5 000 ₽"],
 ["Сайт-портфолио","Portfolio site","10 000 ₽"],
 ["Создание сайтов — под ключ","Website, end to end","от 15 000 ₽"],
@@ -239,7 +239,7 @@ var PRICES = [
 ["Разработка ботов Telegram","Telegram bots","10 000 ₽"],
 ["Чат-бот для сайта и мессенджеров","Chatbot for a site or messengers","10 000 ₽"],
 ["Создание ботов WhatsApp","WhatsApp bots","10 000 ₽"],
-["Создание AI-ботов","AI bots","20 000 ₽"],
+["Создание ИИ-ботов","AI bots","20 000 ₽"],
 ["Telegram Mini App","Telegram Mini App","30 000 ₽"],
 ["Мобильное приложение (Mini App / PWA)","Mobile app (Mini App / PWA)","от 60 000 ₽"]
 ]},
@@ -354,7 +354,7 @@ shown++;
 var hide = !wAll && shown > LIM;
 var nm = lang === "en" ? w.te : w.t;
 return '<figure class="live" style="--k:' + ((shown - 1) % 12) + '" tabindex="0" role="button" aria-label="' + nm + '" data-i="' + i + '"' + (hide ? " hidden" : "") + '>' +
-'<div class="ph" style="background-image:url(' + pic(i, 400) + ')">' + (w.u ? '<span class="lv">online</span>' : '') + '<span class="sheen"></span>' +
+'<div class="ph" style="background-image:url(' + pic(i, 400) + ')">' + (w.u ? '<span class="lv">' + (lang === "en" ? "online" : "онлайн") + '</span>' : '') + '<span class="sheen"></span>' +
 '<img alt="' + nm + '" width="1920" height="1080" ' +
 (shown <= 6 ? 'decoding="async" ' : 'loading="lazy" decoding="async" ') +
 'sizes="(max-width:560px) 94vw, (max-width:720px) 47vw, 940px" ' +
