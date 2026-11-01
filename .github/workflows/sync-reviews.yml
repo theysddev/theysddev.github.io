@@ -1,0 +1,50 @@
+# Автоперенос новых отзывов с Профи.ру на сайт (scripts/sync-reviews.mjs).
+# По расписанию — 4 раза в день; вручную — кнопка «Run workflow» во вкладке Actions.
+# На ветках, кроме main, работает в режиме проверки: ничего не коммитит.
+name: Отзывы с Профи.ру
+
+on:
+  schedule:
+    - cron: "17 3,9,15,21 * * *"
+  workflow_dispatch:
+  push:
+    branches-ignore: [main]
+    paths:
+      - scripts/sync-reviews.mjs
+      - .github/workflows/sync-reviews.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-reviews
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Playwright
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Перенос отзывов
+        run: node scripts/sync-reviews.mjs ${{ github.ref != 'refs/heads/main' && '--dry' || '' }}
+
+      - name: Коммит
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git add -A index.html 404.html en.js widget.js data/profi-reviews.json
+          if git diff --cached --quiet; then echo "Изменений нет"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898403+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Отзывы: новые с Профи.ру"
+          git push
