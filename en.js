@@ -84,7 +84,7 @@ sl38:"Car detailing website — from 10 000 ₽", sl39:"Medical centre website �
     p2d:"On day one you get the exact price, the scope and the deadline.",
     p3d:"Progress shown every day. Always reachable, changes handled as we go.",
     p4d:"Domain, SSL, handover training. 14 days of free revisions after delivery.",
-    ey3:"Reviews", "r-h":"Two specialists,<br>45 reviews", "r-l":"There are two of us — Sofya and Yusuf. Reviews from our Profi.ru profiles are collected here; originals are behind the links below.",
+    ey3:"Reviews", "r-h":"Two specialists,<br>45 reviews", "r-l":"There are two of us — Sofya and Yusuf. Reviews from our Profi.ru profiles are collected here.",
     "r-src":"Sources:",
     ey4:"Brief", "b-h":"Three clicks<br>and your brief is ready",
     "b-l":"Tick what you need. The page writes the message for you, copies it, and opens the chat — just paste and send.",
