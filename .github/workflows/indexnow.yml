@@ -1,0 +1,94 @@
+# IndexNow: после каждого обновления сайта сообщает Яндексу и Bing, какие страницы изменились.
+# Ключ лежит в корне сайта: /2aa276129baaf3ea625917263737525e.txt
+# Ручной запуск (Run workflow) отправляет все страницы из sitemap.xml.
+name: IndexNow
+
+on:
+  push:
+    branches: [main]
+    paths: ['**.html', 'sitemap.xml']
+  workflow_run:
+    workflows: ['Отзывы с Профи.ру']
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      all:
+        description: 'Отправить все страницы из sitemap.xml'
+        type: boolean
+        default: true
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 50
+
+      - name: Ждём, пока GitHub Pages выложит новую версию
+        if: github.event_name != 'workflow_dispatch'
+        run: sleep 120
+
+      - name: Список изменённых страниц
+        id: urls
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+          ALL: ${{ github.event_name == 'workflow_dispatch' && inputs.all }}
+          RUN: ${{ github.event_name == 'workflow_run' }}
+        run: |
+          python3 - <<'EOF'
+          import os, re, subprocess
+          site = 'https://ysddev.com/'
+          sm = open('sitemap.xml', encoding='utf-8').read()
+          in_sitemap = re.findall(r'<loc>(https://ysddev\.com/[^<]*)</loc>', sm)
+          if os.environ.get('ALL') == 'true':
+              urls = in_sitemap
+          else:
+              if os.environ.get('RUN') == 'true':
+                  # синхронизация отзывов: пингуем, только если она только что закоммитила
+                  import time
+                  who, ts = subprocess.check_output(['git', 'log', '-1', '--format=%an%x09%ct'], text=True).strip().split('\t')
+                  rng = ['HEAD~1', 'HEAD'] if who == 'github-actions[bot]' and time.time() - int(ts) < 3600 else ['HEAD', 'HEAD']
+              else:
+                  before = os.environ.get('BEFORE') or ''
+                  rng = [before, os.environ['AFTER']] if before and not set(before) <= {'0'} else ['HEAD~1', 'HEAD']
+              try:
+                  files = subprocess.check_output(['git', 'diff', '--name-only', *rng], text=True).split()
+              except subprocess.CalledProcessError:
+                  files = []
+              urls = []
+              for f in files:
+                  if not f.endswith('.html') or '/' in f or f == '404.html' or f.startswith('yandex_'):
+                      continue
+                  u = site if f == 'index.html' else site + f
+                  if u in in_sitemap:
+                      urls.append(u)
+          urls = sorted(set(urls))[:10000]
+          open('urls.txt', 'w').write('\n'.join(urls))
+          print(len(urls), 'страниц:', *urls[:20], sep='\n')
+          EOF
+
+      - name: Отправляем в Яндекс и IndexNow
+        run: |
+          if [ ! -s urls.txt ]; then echo "Изменённых страниц нет"; exit 0; fi
+          python3 - <<'EOF'
+          import json, urllib.request
+          urls = open('urls.txt').read().split()
+          body = json.dumps({
+              'host': 'ysddev.com',
+              'key': '2aa276129baaf3ea625917263737525e',
+              'keyLocation': 'https://ysddev.com/2aa276129baaf3ea625917263737525e.txt',
+              'urlList': urls,
+          }).encode()
+          for ep in ('https://yandex.com/indexnow', 'https://api.indexnow.org/indexnow'):
+              req = urllib.request.Request(ep, data=body, headers={'Content-Type': 'application/json; charset=utf-8'})
+              try:
+                  with urllib.request.urlopen(req, timeout=30) as r:
+                      print(ep, r.status, len(urls), 'URL')
+              except urllib.error.HTTPError as e:
+                  print(ep, 'HTTP', e.code, e.read()[:300])
+              except Exception as e:
+                  print(ep, 'ошибка', e)
+          EOF
